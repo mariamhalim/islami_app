@@ -21,4 +21,6 @@ class AppAssets {
   static const String suraDetails = 'assets/images/Group 38.png';
   static const String masged = 'assets/images/masgd.png';
   static const String seb7a = 'assets/images/Sebha (1).png';
+  static const String bell = 'assets/images/bell-icon 1.png';
+  static const String bubble = 'assets/images/comment-bubble-icon 1.png';
 }

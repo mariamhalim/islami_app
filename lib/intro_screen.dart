@@ -5,8 +5,6 @@ import 'package:islami/utils/app_colors.dart' show AppColors;
 import 'package:islami/utils/app_routes.dart';
 
 class OnBoardingScreen extends StatelessWidget {
-  const OnBoardingScreen({super.key});
-
   @override
   Widget build(BuildContext context) {
     return IntroductionScreen(
@@ -53,7 +51,8 @@ class OnBoardingScreen extends StatelessWidget {
                 Image.asset(AppAssets.page2),
                 const SizedBox(height: 20),
                 Text(
-                  "Welcome To Islami",
+                  textAlign: TextAlign.center,
+                  "Welcome To Islami\nWe Are Very Excited To Have You In Our Community",
                   style: TextStyle(
                     color: AppColors.goldColor,
                     fontSize: 25,
@@ -84,7 +83,8 @@ class OnBoardingScreen extends StatelessWidget {
                 Image.asset(AppAssets.page3),
                 const SizedBox(height: 20),
                 Text(
-                  "Welcome To Islami",
+                  textAlign: TextAlign.center,
+                  "Reading the Quran\nRead, and your Lord is the Most Generous",
                   style: TextStyle(
                     color: AppColors.goldColor,
                     fontSize: 25,
@@ -114,7 +114,8 @@ class OnBoardingScreen extends StatelessWidget {
                 Image.asset(AppAssets.page4),
                 const SizedBox(height: 20),
                 Text(
-                  "Welcome To Islami",
+                  textAlign: TextAlign.center,
+                  "Bearish\nPraise the name of your Lord, the Most High",
                   style: TextStyle(
                     color: AppColors.goldColor,
                     fontSize: 25,
@@ -144,7 +145,9 @@ class OnBoardingScreen extends StatelessWidget {
                 Image.asset(AppAssets.page5),
                 const SizedBox(height: 20),
                 Text(
-                  "Welcome To Islami",
+                  textAlign: TextAlign.center,
+                  "Holy Quran Radio\nYou can listen to the Holy Quran Radio through the"
+                  " application for free and easily",
                   style: TextStyle(
                     color: AppColors.goldColor,
                     fontSize: 25,

@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:islami/Home/taps/quran/sura_details/sura_content_view.dart';
+import 'package:islami/providers/most_recently_provider.dart';
 import 'package:islami/utils/app_assets.dart';
 import 'package:islami/utils/app_colors.dart';
 import 'package:islami/utils/app_styles.dart';
+import 'package:provider/provider.dart';
 
 import '../Widgets/quran_recourses.dart';
 
 class SuraDetailsScreen extends StatefulWidget {
   const SuraDetailsScreen({super.key});
+
 
   @override
   State<SuraDetailsScreen> createState() => _SuraDetailsScreenState();
@@ -16,12 +19,30 @@ class SuraDetailsScreen extends StatefulWidget {
 
 class _SuraDetailsScreenState extends State<SuraDetailsScreen> {
   List<String> verses = [];
+  late MostRecentlyProvider mostRecentlyProvider;
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    mostRecentlyProvider.readMostRecentList();
+  }
 
   @override
   Widget build(BuildContext context) {
-    var height = MediaQuery.of(context).size.height;
-    var width = MediaQuery.of(context).size.width;
-    int index = ModalRoute.of(context)!.settings.arguments as int;
+    var height = MediaQuery
+        .of(context)
+        .size
+        .height;
+    var width = MediaQuery
+        .of(context)
+        .size
+        .width;
+    int index = ModalRoute
+        .of(context)!
+        .settings
+        .arguments as int;
+    mostRecentlyProvider = Provider.of<MostRecentlyProvider>(context);
     if (verses.isEmpty) {
       loadSuraFile(index);
     }
@@ -43,51 +64,46 @@ class _SuraDetailsScreenState extends State<SuraDetailsScreen> {
         ),
 
         child: Padding(
-          padding: EdgeInsets.all(8),
+          padding: EdgeInsets.all(8
+          ),
           child: Column(
             children: [
-              Text(
-                '${QuranResourses().quranSurahs[index]}',
-                style: AppStyles.bold24Gold,
+              Text('${QuranResourses().quranSurahs[index]}',
+                style: AppStyles.bold24Gold,),
+              SizedBox(height: height * 0.08,)
+              , Expanded(
+                child: verses.isEmpty ?
+                Center(child: CircularProgressIndicator(
+                  color: AppColors.goldColor,)) :
+                ListView.separated(itemBuilder: (context, index) {
+                  return SuraContent(content: verses[index], index: index,);
+                },
+                    separatorBuilder: (context, index) {
+                      return SizedBox(
+                        height: height * 0.01,
+                      );
+                    },
+                    itemCount: verses.length),
               ),
-              SizedBox(height: height * 0.08),
-              Expanded(
-                child: verses.isEmpty
-                    ? Center(
-                        child: CircularProgressIndicator(
-                          color: AppColors.goldColor,
-                        ),
-                      )
-                    : ListView.separated(
-                        itemBuilder: (context, index) {
-                          return SuraContent(
-                            content: verses[index],
-                            index: index,
-                          );
-                        },
-                        separatorBuilder: (context, index) {
-                          return SizedBox(height: height * 0.01);
-                        },
-                        itemCount: verses.length,
-                      ),
-              ),
-              SizedBox(height: height * 0.1),
+              SizedBox(height: height * 0.1)
             ],
           ),
         ),
       ),
+
     );
   }
 
   Future<void> loadSuraFile(int index) async {
     String fileContent = await rootBundle.loadString(
-      'assets/files/Suras/${index + 1}.txt',
-    );
+        'assets/files/Suras/${index + 1}.txt');
     List<String> suraLines = fileContent.split('\n');
     for (int i = 0; i < suraLines.length; i++) {
       print(suraLines[i]);
     }
     verses = suraLines;
-    setState(() {});
+    setState(() {
+
+    });
   }
 }
