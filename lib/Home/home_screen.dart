@@ -24,7 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
     AppAssets.timebg,
   ];
   List<Widget> taps = [
-    QuranTap(index: 0),
+    QuranTap(),
     HadethTap(),
     SebhaTap(),
     RadioTap(index: 0),
