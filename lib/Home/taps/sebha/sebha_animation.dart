@@ -12,7 +12,10 @@ class TasbeehImageState extends State<TasbeehImage> {
   bool rotate = false;
   int counter = 0;
 
-  final List<String> azkar = ['سبحان الله', 'الحمد لله', 'الله أكبر'];
+  final List<String> azkar = ['سبحان الله',
+    'الحمد لله',
+    'الله أكبر',
+    'لا اله الا الله'];
 
   void onTasbeehTap() {
     setState(() {
